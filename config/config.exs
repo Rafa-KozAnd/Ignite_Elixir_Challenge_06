@@ -10,7 +10,9 @@ use Mix.Config
 config :exmeal,
   ecto_repos: [Exmeal.Repo]
 
-config :exmeal, Exmeal.Repo, migration_primary_key: [type: :binary_id]
+config :exmeal, Exmeal.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreing_key: [type: :binary_id]
 
 # Configures the endpoint
 config :exmeal, ExmealWeb.Endpoint,

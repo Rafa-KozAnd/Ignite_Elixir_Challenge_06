@@ -1,7 +1,13 @@
 defmodule Exmeal.Users.Update do
-  alias Exmeal.{Error, Repo, User}
+  alias Ecto.Changeset
+  alias Exmeal.Helpers.GetMealOrUser
+  alias Exmeal.Repo
+  alias Exmeal.Users.Schema.User
 
   def call(%{"id" => id} = params) do
-    # TO DO
+    with {:ok, %User{} = user} <- GetMealOrUser.by_id(User, id),
+         %Changeset{valid?: true} = changeset <- User.changeset(user, params) do
+      Repo.update(changeset)
+    end
   end
 end
